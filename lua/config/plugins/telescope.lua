@@ -6,7 +6,37 @@ return {
     },
 
     config = function()
-        require('telescope').setup({})
+        require('telescope').setup({
+            defaults = {
+                file_ignore_patterns = {
+                    -- Example: { "^scratch/" } -- ignore all files in scratch directory
+                    -- Example: { "%.npz" } -- ignore all npz files
+                    "%.o",
+                    "%.dll",
+                    "%.exe",
+                    "%.cache",
+                    "%.pdf",
+                    "%.pdb",
+                    "%.jar",
+                    "%.class",
+                    "%.jpg",
+                    "%.jpeg",
+                    "%.png",
+                    "%.svg",
+                    "%.otf",
+                    "%.ttf",
+                    "%.lock",
+                    "%.ipynb",
+                    "obj/",
+                    "bin/Debug/",
+                    "bin/Release/",
+                    "__pycache__/*",
+                    "__pycache__/",
+                    "node%_modules/*",
+                    "node%_modules/",
+                },
+            }
+        })
 
         local builtin = require('telescope.builtin')
         vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
