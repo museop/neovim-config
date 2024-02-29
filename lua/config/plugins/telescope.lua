@@ -28,6 +28,8 @@ return {
                     "%.lock",
                     "%.ipynb",
                     "obj/",
+                    "target/debug/",
+                    "target/release/",
                     "bin/Debug/",
                     "bin/Release/",
                     "__pycache__/*",
