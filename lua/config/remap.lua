@@ -1,26 +1,36 @@
+local mapKey = function(from, to, mode, opts)
+    local options = { noremap = true, silent = true }
+    mode = mode or "n"
+
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+
+    vim.keymap.set(mode, from, to, options)
+end
+
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-vim.keymap.set("i", "jj", "<ESC>")
+mapKey("<leader>pv", vim.cmd.Ex)
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+mapKey('jj', '<ESC>', 'i')
 
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+mapKey("K", ":m '<-2<CR>gv=gv", "v")
+mapKey("J", ":m '>+1<CR>gv=gv", "v")
 
-vim.keymap.set("n", "<leader>y", "\"+y")
-vim.keymap.set("v", "<leader>y", "\"+y")
-vim.keymap.set("n", "<leader>Y", "\"+Y")
+mapKey("<C-d>", "<C-d>zz")
+mapKey("<C-u>", "<C-u>zz")
 
-vim.keymap.set("n", "Q", "<nop>")
+mapKey("<leader>y", "\"+y")
+mapKey("<leader>y", "\"+y", 'v')
+mapKey("<leader>Y", "\"+Y")
 
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+mapKey("Q", "<nop>")
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+mapKey("<C-k>", "<cmd>cnext<CR>zz")
+mapKey("<C-j>", "<cmd>cprev<CR>zz")
+mapKey("<leader>k", "<cmd>lnext<CR>zz")
+mapKey("<leader>j", "<cmd>lprev<CR>zz")
 
-vim.keymap.set('n', '<leader>/',  "gcc", { noremap = true, silent = true})
-vim.keymap.set('v', '<leader>/',  "gcb", { noremap = true, silent = true})
+mapKey("<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
